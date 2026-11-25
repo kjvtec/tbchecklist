@@ -58,7 +58,9 @@ function CompanyPageHeader({
             {COMPANY_HEADER.fullName}
           </h1>
           <p className="text-[10.5px] leading-snug text-slate-700">
-            {COMPANY_HEADER.address}
+            {COMPANY_HEADER.addressLine1}
+            <br />
+            {COMPANY_HEADER.addressLine2}
           </p>
         </div>
         <div className="max-w-[210px] shrink-0 text-right">

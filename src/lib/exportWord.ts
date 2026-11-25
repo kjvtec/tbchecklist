@@ -249,10 +249,17 @@ export async function exportChecklistToWord(
                 spacing: { after: 40 },
                 children: [
                   new TextRun({
-                    text: COMPANY_HEADER.address,
+                    text: COMPANY_HEADER.addressLine1,
                     font: FONT_SPEC,
                     size: 24,
                     color: "334155",
+                  }),
+                  new TextRun({
+                    text: COMPANY_HEADER.addressLine2,
+                    font: FONT_SPEC,
+                    size: 24,
+                    color: "334155",
+                    break: 1,
                   }),
                 ],
               }),

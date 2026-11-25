@@ -11,6 +11,8 @@ export const COMPANY_HEADER = {
   fullName: "บริษัท เวอร์ติคัลเทค จำกัด (VerticalTec Co., Ltd.)",
   address:
     "หมู่บ้านบิซ แกลเลอเรีย เลขที่ 388/68 ถนนนวลจันทร์ แขวงนวลจันทร์ เขตบึงกุ่ม กรุงเทพมหานคร 10230",
+  addressLine1: "หมู่บ้านบิซ แกลเลอเรีย เลขที่ 388/68 ถนนนวลจันทร์ แขวงนวลจันทร์",
+  addressLine2: "เขตบึงกุ่ม กรุงเทพมหานคร 10230",
   documentTitle: "แบบฟอร์ม Check List งานเปลี่ยนระบบ POS สาขา (Replace POS – ThaiBev)",
   logoPath: "/verticaltec-logo.png",
 };
