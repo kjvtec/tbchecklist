@@ -1136,10 +1136,7 @@ export default function ChecklistEditor({
           {/* 3. Work Days Summary */}
           <section className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
             <div className="mb-3 flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-2">
-              <div className="flex flex-wrap items-center gap-4">
-                <h2 className="text-base font-bold text-slate-900">เอกสารสรุปวันทำงาน</h2>
-                {renderTimingInputs("sec:workdays")}
-              </div>
+              <h2 className="text-base font-bold text-slate-900">เอกสารสรุปวันทำงาน</h2>
               <div className="flex items-center gap-2">
                 <label className="text-xs font-semibold text-slate-700">
                   สรุปรวมวันที่ทำงานทั้งหมด (วัน):

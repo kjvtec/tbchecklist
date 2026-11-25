@@ -469,14 +469,9 @@ function A4DocumentPreview({ doc }: A4DocumentPreviewProps) {
         {/* Work Days Summary */}
         <section className="mb-5 print-avoid-break">
           <div className="mb-2 flex flex-wrap items-center justify-between gap-2 border-b border-slate-300 pb-1">
-            <div className="flex items-center gap-3">
-              <h2 className="text-[12.5px] font-bold text-slate-900">
-                เอกสารสรุปวันทำงาน
-              </h2>
-              <span className="text-[10px] font-medium text-slate-600">
-                {formatTiming("sec:workdays")}
-              </span>
-            </div>
+            <h2 className="text-[12.5px] font-bold text-slate-900">
+              เอกสารสรุปวันทำงาน
+            </h2>
             <span className="text-[11px] font-semibold">
               สรุปรวมวันที่ทำงานทั้งหมด :{" "}
               <span className="underline decoration-dotted underline-offset-4 px-2">

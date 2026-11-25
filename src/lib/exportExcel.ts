@@ -510,7 +510,7 @@ export async function exportChecklistToExcel(doc: ChecklistDocument): Promise<vo
   addCompanyPageHeader(`แผ่นที่ ${currentPage++} / ${mainTotalPages}`);
 
   const wdTitle = sheet.addRow([
-    `เอกสารสรุปวันทำงาน (สรุปรวมวันที่ทำงานทั้งหมด: ${doc.total_work_days || 0} วัน)${formatTimingSuffix("sec:workdays")}`,
+    `เอกสารสรุปวันทำงาน (สรุปรวมวันที่ทำงานทั้งหมด: ${doc.total_work_days || 0} วัน)`,
     "",
     "",
     "",

@@ -592,9 +592,7 @@ export async function exportChecklistToWord(
       spacing: { after: 60 },
       children: [
         new TextRun({
-          text: `เอกสารสรุปวันทำงาน (รวมทั้งหมด ${doc.total_work_days || 0} วัน)   ${formatTiming(
-            "sec:workdays"
-          )}`,
+          text: `เอกสารสรุปวันทำงาน (รวมทั้งหมด ${doc.total_work_days || 0} วัน)`,
           font: FONT_SPEC,
           size: 28,
           bold: true,
