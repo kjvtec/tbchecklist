@@ -520,7 +520,7 @@ export default function ChecklistEditor({
   );
 
   return (
-    <div className="min-h-screen pb-12">
+    <div className="min-h-screen pb-12 print:min-h-0 print:pb-0">
       {/* Sticky Top Action Bar */}
       <div className="no-print sticky top-0 z-30 border-b border-slate-200 bg-white/95 shadow-xs backdrop-blur">
         <div className="mx-auto max-w-7xl space-y-2.5 px-3 py-2.5 sm:px-4 sm:py-3">
