@@ -45,12 +45,19 @@ function CompanyPageHeader({
 }) {
   return (
     <header className="mb-3 border-b-2 border-sky-600 pb-2">
-      <div className="flex items-center gap-4">
-        <img
-          src={COMPANY_HEADER.logoPath}
-          alt="VerticalTec Logo"
-          className="h-11 w-auto shrink-0 object-contain"
-        />
+      <div className="flex items-center gap-3">
+        <div className="flex shrink-0 items-center gap-2">
+          <img
+            src={COMPANY_HEADER.oishiLogoPath}
+            alt="Oishi Group Logo"
+            className="h-9 w-auto object-contain"
+          />
+          <img
+            src={COMPANY_HEADER.logoPath}
+            alt="VerticalTec Logo"
+            className="h-9 w-auto object-contain"
+          />
+        </div>
         <div className="min-w-0 flex-1">
           <h1 className="text-[14px] font-bold leading-snug text-slate-900">
             {COMPANY_HEADER.fullName}

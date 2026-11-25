@@ -12,6 +12,7 @@ export const COMPANY_HEADER = {
   address:
     "หมู่บ้านบิซ แกลเลอเรีย เลขที่ 388/68 ถนนนวลจันทร์ แขวงนวลจันทร์ เขตบึงกุ่ม กรุงเทพมหานคร 10230",
   documentTitle: "แบบฟอร์ม Check List งานเปลี่ยนระบบ POS สาขา (Replace POS – ThaiBev)",
+  oishiLogoPath: "/oishi-logo.jpg",
   logoPath: "/verticaltec-logo.png",
 };
 

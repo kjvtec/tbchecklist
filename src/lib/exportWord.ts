@@ -188,7 +188,10 @@ function buildSignatureTable(doc: ChecklistDocument): Table {
 export async function exportChecklistToWord(
   doc: ChecklistDocument
 ): Promise<void> {
-  const logoBytes = await fetchImageBytes(COMPANY_HEADER.logoPath);
+  const [oishiBytes, logoBytes] = await Promise.all([
+    fetchImageBytes(COMPANY_HEADER.oishiLogoPath),
+    fetchImageBytes(COMPANY_HEADER.logoPath),
+  ]);
 
   const formatTiming = (key: string) => {
     const t = doc.payload.sectionTimings?.[key];
@@ -204,29 +207,43 @@ export async function exportChecklistToWord(
       new TableRow({
         children: [
           new TableCell({
-            width: { size: 18, type: WidthType.PERCENTAGE },
+            width: { size: 26, type: WidthType.PERCENTAGE },
             borders: {
               ...NO_BORDERS,
-              bottom: { style: BorderStyle.SINGLE, size: 12, color: "0284C7" },
+              bottom: { style: BorderStyle.SINGLE, size: 6, color: "E0F2FE" },
             },
             verticalAlign: VerticalAlign.CENTER,
             children: [
-              logoBytes
+              oishiBytes || logoBytes
                 ? new Paragraph({
-                    spacing: { after: 60 },
+                    spacing: { after: 40 },
                     children: [
-                      new ImageRun({
-                        data: logoBytes.data,
-                        type: logoBytes.type,
-                        transformation: { width: 88, height: 35 },
-                      }),
+                      ...(oishiBytes
+                        ? [
+                            new ImageRun({
+                              data: oishiBytes.data,
+                              type: oishiBytes.type,
+                              transformation: { width: 68, height: 27 },
+                            }),
+                          ]
+                        : []),
+                      ...(oishiBytes && logoBytes ? [new TextRun({ text: "  " })] : []),
+                      ...(logoBytes
+                        ? [
+                            new ImageRun({
+                              data: logoBytes.data,
+                              type: logoBytes.type,
+                              transformation: { width: 68, height: 27 },
+                            }),
+                          ]
+                        : []),
                     ],
                   })
                 : new Paragraph({ children: [] }),
             ],
           }),
           new TableCell({
-            width: { size: 62, type: WidthType.PERCENTAGE },
+            width: { size: 54, type: WidthType.PERCENTAGE },
             borders: {
               ...NO_BORDERS,
               bottom: { style: BorderStyle.SINGLE, size: 6, color: "E0F2FE" },
