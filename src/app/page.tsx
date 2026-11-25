@@ -229,19 +229,12 @@ export default function HomePage() {
     <main className="mx-auto w-full max-w-screen-2xl px-3 py-4 sm:px-6 sm:py-6">
       {/* Header Banner */}
       <div className="mb-4 flex flex-col justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:mb-5 sm:flex-row sm:items-center sm:p-5">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-          <div className="flex shrink-0 items-center gap-2.5 sm:gap-3">
-            <img
-              src={COMPANY_HEADER.oishiLogoPath}
-              alt="Oishi Group Logo"
-              className="h-9 w-auto object-contain sm:h-12"
-            />
-            <img
-              src={COMPANY_HEADER.logoPath}
-              alt="VerticalTec Logo"
-              className="h-9 w-auto object-contain sm:h-12"
-            />
-          </div>
+        <div className="flex items-start gap-3 sm:items-center sm:gap-4">
+          <img
+            src={COMPANY_HEADER.logoPath}
+            alt="VerticalTec Logo"
+            className="h-10 w-auto shrink-0 object-contain sm:h-14"
+          />
           <div className="min-w-0">
             <h1 className="text-base font-bold text-slate-900 sm:text-lg">
               {COMPANY_HEADER.fullName}

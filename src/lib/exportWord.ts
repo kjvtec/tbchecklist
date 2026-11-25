@@ -188,10 +188,7 @@ function buildSignatureTable(doc: ChecklistDocument): Table {
 export async function exportChecklistToWord(
   doc: ChecklistDocument
 ): Promise<void> {
-  const [oishiBytes, logoBytes] = await Promise.all([
-    fetchImageBytes(COMPANY_HEADER.oishiLogoPath),
-    fetchImageBytes(COMPANY_HEADER.logoPath),
-  ]);
+  const logoBytes = await fetchImageBytes(COMPANY_HEADER.logoPath);
 
   const formatTiming = (key: string) => {
     const t = doc.payload.sectionTimings?.[key];
@@ -207,43 +204,29 @@ export async function exportChecklistToWord(
       new TableRow({
         children: [
           new TableCell({
-            width: { size: 26, type: WidthType.PERCENTAGE },
+            width: { size: 18, type: WidthType.PERCENTAGE },
             borders: {
               ...NO_BORDERS,
               bottom: { style: BorderStyle.SINGLE, size: 6, color: "E0F2FE" },
             },
             verticalAlign: VerticalAlign.CENTER,
             children: [
-              oishiBytes || logoBytes
+              logoBytes
                 ? new Paragraph({
                     spacing: { after: 40 },
                     children: [
-                      ...(oishiBytes
-                        ? [
-                            new ImageRun({
-                              data: oishiBytes.data,
-                              type: oishiBytes.type,
-                              transformation: { width: 68, height: 27 },
-                            }),
-                          ]
-                        : []),
-                      ...(oishiBytes && logoBytes ? [new TextRun({ text: "  " })] : []),
-                      ...(logoBytes
-                        ? [
-                            new ImageRun({
-                              data: logoBytes.data,
-                              type: logoBytes.type,
-                              transformation: { width: 68, height: 27 },
-                            }),
-                          ]
-                        : []),
+                      new ImageRun({
+                        data: logoBytes.data,
+                        type: logoBytes.type,
+                        transformation: { width: 88, height: 35 },
+                      }),
                     ],
                   })
                 : new Paragraph({ children: [] }),
             ],
           }),
           new TableCell({
-            width: { size: 54, type: WidthType.PERCENTAGE },
+            width: { size: 60, type: WidthType.PERCENTAGE },
             borders: {
               ...NO_BORDERS,
               bottom: { style: BorderStyle.SINGLE, size: 6, color: "E0F2FE" },
@@ -276,7 +259,7 @@ export async function exportChecklistToWord(
             ],
           }),
           new TableCell({
-            width: { size: 20, type: WidthType.PERCENTAGE },
+            width: { size: 22, type: WidthType.PERCENTAGE },
             borders: {
               ...NO_BORDERS,
               bottom: { style: BorderStyle.SINGLE, size: 6, color: "E0F2FE" },
@@ -288,9 +271,9 @@ export async function exportChecklistToWord(
                 spacing: { after: 20 },
                 children: [
                   new TextRun({
-                    text: "BRANCH INSTALL CHECK LIST",
+                    text: doc.shop_name || "สาขา",
                     font: FONT_SPEC,
-                    size: 22,
+                    size: 26,
                     bold: true,
                     color: "0369A1",
                   }),

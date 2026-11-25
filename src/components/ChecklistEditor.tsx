@@ -710,19 +710,12 @@ export default function ChecklistEditor({
       ) : (
         <div className="no-print mx-auto max-w-5xl space-y-5 px-3 py-4 sm:space-y-6 sm:px-4 sm:py-6">
           {/* Company Header Card */}
-          <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:flex-row sm:items-center sm:gap-4">
-            <div className="flex shrink-0 items-center gap-2.5 sm:gap-3">
-              <img
-                src={COMPANY_HEADER.oishiLogoPath}
-                alt="Oishi Group Logo"
-                className="h-9 w-auto object-contain sm:h-11"
-              />
-              <img
-                src={COMPANY_HEADER.logoPath}
-                alt="VerticalTec"
-                className="h-9 w-auto object-contain sm:h-11"
-              />
-            </div>
+          <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+            <img
+              src={COMPANY_HEADER.logoPath}
+              alt="VerticalTec"
+              className="h-12 w-auto shrink-0 object-contain"
+            />
             <div>
               <h2 className="text-base font-bold text-slate-900">
                 {COMPANY_HEADER.fullName}

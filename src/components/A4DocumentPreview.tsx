@@ -38,26 +38,21 @@ function StatusPrintCell({ status }: { status: CheckStatus }) {
 
 function CompanyPageHeader({
   storeId,
+  shopName,
   pageLabel,
 }: {
   storeId: string;
+  shopName?: string;
   pageLabel: string;
 }) {
   return (
     <header className="mb-3 border-b-2 border-sky-600 pb-2">
-      <div className="flex items-center gap-3">
-        <div className="flex shrink-0 items-center gap-2">
-          <img
-            src={COMPANY_HEADER.oishiLogoPath}
-            alt="Oishi Group Logo"
-            className="h-9 w-auto object-contain"
-          />
-          <img
-            src={COMPANY_HEADER.logoPath}
-            alt="VerticalTec Logo"
-            className="h-9 w-auto object-contain"
-          />
-        </div>
+      <div className="flex items-center gap-4">
+        <img
+          src={COMPANY_HEADER.logoPath}
+          alt="VerticalTec Logo"
+          className="h-11 w-auto shrink-0 object-contain"
+        />
         <div className="min-w-0 flex-1">
           <h1 className="text-[14px] font-bold leading-snug text-slate-900">
             {COMPANY_HEADER.fullName}
@@ -66,11 +61,11 @@ function CompanyPageHeader({
             {COMPANY_HEADER.address}
           </p>
         </div>
-        <div className="shrink-0 text-right">
-          <div className="text-[10.5px] font-semibold uppercase tracking-wide text-sky-700">
-            Branch Install Check List
+        <div className="max-w-[210px] shrink-0 text-right">
+          <div className="text-[13px] font-extrabold leading-tight text-sky-800">
+            {shopName || "สาขา"}
           </div>
-          <div className="text-[10px] text-slate-500">
+          <div className="mt-0.5 text-[10px] font-medium text-slate-600">
             {storeId ? `Branch ID: ${storeId} • ` : ""}
             {pageLabel}
           </div>
@@ -322,6 +317,7 @@ function A4DocumentPreview({ doc }: A4DocumentPreviewProps) {
       <div className={pageClass}>
         <CompanyPageHeader
           storeId={doc.store_id}
+          shopName={doc.shop_name}
           pageLabel={`แผ่นที่ ${currentPage++} / ${totalPages}`}
         />
 
@@ -395,6 +391,7 @@ function A4DocumentPreview({ doc }: A4DocumentPreviewProps) {
       <div className={pageClass}>
         <CompanyPageHeader
           storeId={doc.store_id}
+          shopName={doc.shop_name}
           pageLabel={`แผ่นที่ ${currentPage++} / ${totalPages}`}
         />
         {hasHwPage2 && (
@@ -465,6 +462,7 @@ function A4DocumentPreview({ doc }: A4DocumentPreviewProps) {
       <div className={pageClass}>
         <CompanyPageHeader
           storeId={doc.store_id}
+          shopName={doc.shop_name}
           pageLabel={`แผ่นที่ ${currentPage++} / ${totalPages}`}
         />
 
@@ -579,6 +577,7 @@ function A4DocumentPreview({ doc }: A4DocumentPreviewProps) {
         <div className={pageClass}>
           <CompanyPageHeader
             storeId={doc.store_id}
+          shopName={doc.shop_name}
             pageLabel={`แผ่นที่ ${currentPage++} / ${totalPages}`}
           />
           {renderChecklistTable(clPage1Categories)}
@@ -594,6 +593,7 @@ function A4DocumentPreview({ doc }: A4DocumentPreviewProps) {
         <div className={pageClass}>
           <CompanyPageHeader
             storeId={doc.store_id}
+          shopName={doc.shop_name}
             pageLabel={`แผ่นที่ ${currentPage++} / ${totalPages}`}
           />
           {renderChecklistTable(clPage2Categories)}
@@ -609,6 +609,7 @@ function A4DocumentPreview({ doc }: A4DocumentPreviewProps) {
         <div className={pageClass}>
           <CompanyPageHeader
             storeId={doc.store_id}
+          shopName={doc.shop_name}
             pageLabel={`แผ่นที่ ${currentPage++} / ${totalPages}`}
           />
           {renderChecklistTable(clPage3Categories)}
@@ -645,6 +646,7 @@ function A4DocumentPreview({ doc }: A4DocumentPreviewProps) {
           <div key={chunkIdx} className={pageClass}>
             <CompanyPageHeader
               storeId={doc.store_id}
+          shopName={doc.shop_name}
               pageLabel={`เอกสารแนบ ${attachPageNum} / ${attachmentTotalPages}`}
             />
 

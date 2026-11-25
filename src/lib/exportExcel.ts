@@ -116,13 +116,7 @@ export async function exportChecklistToExcel(doc: ChecklistDocument): Promise<vo
   ];
   const COL_COUNT = 5;
 
-  const [oishiImg, logoImg] = await Promise.all([
-    fetchImageAsBase64(COMPANY_HEADER.oishiLogoPath),
-    fetchImageAsBase64(COMPANY_HEADER.logoPath),
-  ]);
-  const oishiLogoId = oishiImg
-    ? workbook.addImage({ base64: oishiImg.base64, extension: oishiImg.extension })
-    : null;
+  const logoImg = await fetchImageAsBase64(COMPANY_HEADER.logoPath);
   const logoId = logoImg
     ? workbook.addImage({ base64: logoImg.base64, extension: logoImg.extension })
     : null;
@@ -140,9 +134,15 @@ export async function exportChecklistToExcel(doc: ChecklistDocument): Promise<vo
       COMPANY_HEADER.fullName,
       "",
       "",
-      doc.store_id ? `Branch ID: ${doc.store_id}` : "Branch Install Check List",
+      doc.shop_name || "สาขา",
     ]);
-    const r2 = sheet.addRow(["", COMPANY_HEADER.address, "", "", pageLabel]);
+    const r2 = sheet.addRow([
+      "",
+      COMPANY_HEADER.address,
+      "",
+      "",
+      `${doc.store_id ? `Branch ID: ${doc.store_id} • ` : ""}${pageLabel}`,
+    ]);
     const r3 = sheet.addRow(["", COMPANY_HEADER.documentTitle, "", "", ""]);
     sheet.mergeCells(r1.number, 1, r3.number, 1);
     sheet.mergeCells(r1.number, 2, r1.number, 4);
@@ -152,16 +152,10 @@ export async function exportChecklistToExcel(doc: ChecklistDocument): Promise<vo
     r2.height = 20;
     r3.height = 24;
 
-    if (oishiLogoId !== null) {
-      sheet.addImage(oishiLogoId, {
-        tl: { col: 0.04, row: r1.number - 1 + 0.75 },
-        ext: { width: 42, height: 17 },
-      });
-    }
     if (logoId !== null) {
       sheet.addImage(logoId, {
-        tl: { col: 0.52, row: r1.number - 1 + 0.75 },
-        ext: { width: 42, height: 17 },
+        tl: { col: 0.08, row: r1.number - 1 + 0.35 },
+        ext: { width: 76, height: 31 },
       });
     }
 
