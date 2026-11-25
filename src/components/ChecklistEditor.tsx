@@ -67,6 +67,24 @@ interface ChecklistEditorProps {
   onSaved: (savedDoc: ChecklistDocument) => void;
 }
 
+const toDateInputValue = (val: string): string => {
+  const trimmed = (val || "").trim();
+  const isoMatch = trimmed.match(/^(\d{4}-\d{2}-\d{2})/);
+  if (isoMatch) return isoMatch[1];
+  const dmyMatch = trimmed.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (dmyMatch) {
+    const [, d, m, y] = dmyMatch;
+    return `${y}-${m.padStart(2, "0")}-${d.padStart(2, "0")}`;
+  }
+  return "";
+};
+
+const fromDateInputValue = (iso: string): string => {
+  const m = iso.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!m) return iso;
+  return `${m[3]}/${m[2]}/${m[1]}`;
+};
+
 export default function ChecklistEditor({
   initialDoc,
   initialMode = "edit",
@@ -376,7 +394,7 @@ export default function ChecklistEditor({
           <thead className="bg-slate-50 text-xs text-slate-600">
             <tr>
               <th className="w-8 px-1 py-2"></th>
-              <th className="px-3 py-2 text-left w-36">วันที่</th>
+              <th className="w-40 px-3 py-2 text-left">วันที่</th>
               <th className="px-3 py-2 text-left">รายละเอียด</th>
               <th className="px-3 py-2 text-left w-44">เจ้าหน้าที่</th>
               <th className="px-3 py-2 text-left w-36">เลขที่ใบงาน</th>
@@ -421,13 +439,16 @@ export default function ChecklistEditor({
                   </td>
                   <td className="p-1.5">
                   <input
-                    type="text"
-                    value={row.date}
-                    placeholder="เช่น 25/11/2026"
+                    type="date"
+                    value={toDateInputValue(row.date)}
                     onChange={(e) =>
                       updatePayload(
                         key,
-                        rows.map((r) => (r.id === row.id ? { ...r, date: e.target.value } : r))
+                        rows.map((r) =>
+                          r.id === row.id
+                            ? { ...r, date: fromDateInputValue(e.target.value) }
+                            : r
+                        )
                       )
                     }
                     className="w-full rounded border border-slate-300 px-2 py-1 text-sm focus:border-sky-500 focus:outline-none"
@@ -717,10 +738,9 @@ export default function ChecklistEditor({
                   Date time
                 </label>
                 <input
-                  type="text"
-                  value={doc.doc_datetime}
+                  type="date"
+                  value={toDateInputValue(doc.doc_datetime)}
                   onChange={(e) => setDoc({ ...doc, doc_datetime: e.target.value })}
-                  placeholder="เช่น 2026-11-25 10:00"
                   className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-sky-500 focus:outline-none"
                 />
               </div>
@@ -2031,14 +2051,15 @@ export default function ChecklistEditor({
                     className="mb-2 w-full rounded border border-slate-300 bg-white px-2.5 py-1.5 text-sm focus:border-sky-500 focus:outline-none"
                   />
                   <input
-                    type="text"
-                    value={sig.date}
-                    placeholder="วันที่ (เช่น 25/11/2026)"
+                    type="date"
+                    value={toDateInputValue(sig.date)}
                     onChange={(e) =>
                       updatePayload(
                         "signatures",
                         doc.payload.signatures.map((s, i) =>
-                          i === idx ? { ...s, date: e.target.value } : s
+                          i === idx
+                            ? { ...s, date: fromDateInputValue(e.target.value) }
+                            : s
                         )
                       )
                     }
